@@ -111,6 +111,84 @@ Using the results of your experiments, answer the following questions:
 - Do the runtimes recorded correspond to the Big-O complexity of each algorithm?
 - What is the initial state of the data and how does that affect the outcomes?
 
+## Help! I Can't Sort this Out!
+
+Implementing a sorting algorithm can be confusing or frustrating, but luckily enough you are not alone! There are lots of resources out there about sorting algorithms, and example implementations abound.
+
+However, to really learn an algorithm you need to try writing it out yourself, and testing it thoroughly to ensure its correctness.
+
+As an example, let's look together at **merge sort**.
+
+The first step is to learn about the algorithm itself, and for that we need to do some research. A quick search brought up a host of hits, from the [merge sort Wikipedia page](https://en.wikipedia.org/wiki/Merge_sort) to a [Khan Academy tutorial](https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/overview-of-merge-sort) and a [video on YouTube](https://www.youtube.com/watch?v=e5ik2UGjHBk). Often, visualizations are helpful for understanding how an algorithm works. Here's an animated GIF [from Wikipedia](https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif) showing an array being sorted with merge sort:
+
+![merge sort example](merge-sort-example.gif)
+
+After spending some time reading up on the algorithm, it's time to take a crack at writing our own implementation. _Before we write any implementation code_, a good practice is to write several **tests** for our algorithm. This way, we have a goal to aim for and an easy way to confirm that our implementation is correct.
+
+So what is a good test for merge sort? Well, the same as every other kind of sort! It should sort a list! Here's some example code for testing a sorting function called `merge_sort()` (assumed to be in a module called `sort`):
+
+  from sort import merge_sort
+
+  def merge_sort_test():
+      randomized        = [3, 8, 1, 10, 9, 6, 4]
+      randomized_sorted = [1, 3, 4, 6, 8, 9, 10]
+      print(randomized != randomized_sorted)             # sanity check
+      print(merge_sort(randomized) == randomized_sorted) # should print "True"
+
+  merge_sort_test()
+
+When testing, it is best to test common examples of inputs as well as the extremes of _possible_ inputs, since many bugs live at these extremes. So let's add a few more assertions:
+
+  def merge_sort_test():
+      randomized        = [3, 8, 1, 10, 9, 6, 4]
+      randomized_sorted = [1, 3, 4, 6, 8, 9, 10]
+      print(randomized != randomized_sorted)             # sanity check
+      print(merge_sort(randomized) == randomized_sorted) # should print "True"
+
+      duplicate_values        = [4, 3, 2, 3, 5]
+      duplicate_values_sorted = [2, 3, 3, 4, 5]
+      print(merge_sort(duplicate_values) == duplicate_values_sorted)
+
+      empty_list = []
+      print(merge_sort(empty_list) == [])
+
+      single_element = [5]
+      print(merge_sort(single_element) == [5])
+
+      with_negative_numbers        = [-4, 8, 0, -10, 7, 3]
+      with_negative_numbers_sorted = [-10, -4, 0, 3, 7, 8]
+      print(merge_sort(with_negative_numbers) == with_negative_numbers_sorted)
+
+With these tests in place, we now have a clear and easy way to see test our code: if we run this file and any test returns `False`, then we know that our implementation is incorrect.
+
+Running this code before writing a complete `merge_sort()` function will likely produce errors, but we can use these errors to help work out our implementation.
+
+Now that we have a decent understanding of the algorithm and a set of tests, we can start writing our own implementation. Let's write out some pseudocode as comments:
+
+  def merge_sort(list, key=lambda x: x):
+      # Divide list into sub-lists until each sub-list has 1 element
+      # Merge sub-lists until only 1 list remaining
+      # Return main list
+
+Notice that the second step (the merge part) is not clearly defined. Let's add a second function `merge()` that we can use within `merge_sort()`:
+
+  def merge(list_a, list_b):
+      # Compare the first elements of both lists
+      # Remove the lower element from its list and add to a sorted list
+      # Keep comparing until one list is empty
+      # Append remaining elements from non-empty list to sorted list (in order)
+      # Return sorted list
+
+This pseudocode could be improved, but it provides a good starting place. To keep yourself on track, leave the comments in place as you write your code so that you can compare your implementation with the steps you've defined in pseudocode. That way, it is easier to tell if an error you encountered is an error in your logic (i.e. the pseudocode) or an error in your implementation (i.e. how your code is written).
+
+Now you are all set to go and write your own implementation. Remember, be methodical and incremental in your approach.
+
+Beware of common errors and logical mistakes:
+
+- Off-by-one errors (e.g. forgetting to compare the first or last element)
+- Out-of-bounds errors (e.g. trying to access indices outside the list)
+- Comparison operator errors (e.g. using `<` when you want `<=`)
+
 ## Where To Go From Here
 
 Once you have completed all of the main goals of the tutorial, use some of these ideas to expand the project and explore the concepts further:
