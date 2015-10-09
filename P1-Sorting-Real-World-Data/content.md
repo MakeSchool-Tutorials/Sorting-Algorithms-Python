@@ -127,37 +127,37 @@ After spending some time reading up on the algorithm, it's time to take a crack 
 
 So what is a good test for merge sort? Well, the same as every other kind of sort! It should sort a list! Here's some example code for testing a sorting function called `merge_sort()` (assumed to be in a module called `sort`):
 
-  from sort import merge_sort
+    from sort import merge_sort
 
-  def merge_sort_test():
-      randomized        = [3, 8, 1, 10, 9, 6, 4]
-      randomized_sorted = [1, 3, 4, 6, 8, 9, 10]
-      print(randomized != randomized_sorted)             # sanity check
-      print(merge_sort(randomized) == randomized_sorted) # should print "True"
+    def merge_sort_test():
+        randomized        = [3, 8, 1, 10, 9, 6, 4]
+        randomized_sorted = [1, 3, 4, 6, 8, 9, 10]
+        print(randomized != randomized_sorted)             # sanity check
+        print(merge_sort(randomized) == randomized_sorted) # should print "True"
 
-  merge_sort_test()
+    merge_sort_test()
 
 When testing, it is best to test common examples of inputs as well as the extremes of _possible_ inputs, since many bugs live at these extremes. So let's add a few more assertions:
 
-  def merge_sort_test():
-      randomized        = [3, 8, 1, 10, 9, 6, 4]
-      randomized_sorted = [1, 3, 4, 6, 8, 9, 10]
-      print(randomized != randomized_sorted)             # sanity check
-      print(merge_sort(randomized) == randomized_sorted) # should print "True"
+    def merge_sort_test():
+        randomized        = [3, 8, 1, 10, 9, 6, 4]
+        randomized_sorted = [1, 3, 4, 6, 8, 9, 10]
+        print(randomized != randomized_sorted)             # sanity check
+        print(merge_sort(randomized) == randomized_sorted) # should print "True"
 
-      duplicate_values        = [4, 3, 2, 3, 5]
-      duplicate_values_sorted = [2, 3, 3, 4, 5]
-      print(merge_sort(duplicate_values) == duplicate_values_sorted)
+        duplicate_values        = [4, 3, 2, 3, 5]
+        duplicate_values_sorted = [2, 3, 3, 4, 5]
+        print(merge_sort(duplicate_values) == duplicate_values_sorted)
 
-      empty_list = []
-      print(merge_sort(empty_list) == [])
+        empty_list = []
+        print(merge_sort(empty_list) == [])
 
-      single_element = [5]
-      print(merge_sort(single_element) == [5])
+        single_element = [5]
+        print(merge_sort(single_element) == [5])
 
-      with_negative_numbers        = [-4, 8, 0, -10, 7, 3]
-      with_negative_numbers_sorted = [-10, -4, 0, 3, 7, 8]
-      print(merge_sort(with_negative_numbers) == with_negative_numbers_sorted)
+        with_negative_numbers        = [-4, 8, 0, -10, 7, 3]
+        with_negative_numbers_sorted = [-10, -4, 0, 3, 7, 8]
+        print(merge_sort(with_negative_numbers) == with_negative_numbers_sorted)
 
 With these tests in place, we now have a clear and easy way to see test our code: if we run this file and any test returns `False`, then we know that our implementation is incorrect.
 
@@ -165,19 +165,19 @@ Running this code before writing a complete `merge_sort()` function will likely 
 
 Now that we have a decent understanding of the algorithm and a set of tests, we can start writing our own implementation. Let's write out some pseudocode as comments:
 
-  def merge_sort(list, key=lambda x: x):
-      # Divide list into sub-lists until each sub-list has 1 element
-      # Merge sub-lists until only 1 list remaining
-      # Return main list
+    def merge_sort(list, key=lambda x: x):
+        # Divide list into sub-lists until each sub-list has 1 element
+        # Merge sub-lists until only 1 list remaining
+        # Return main list
 
 Notice that the second step (the merge part) is not clearly defined. Let's add a second function `merge()` that we can use within `merge_sort()`:
 
-  def merge(list_a, list_b):
-      # Compare the first elements of both lists
-      # Remove the lower element from its list and add to a sorted list
-      # Keep comparing until one list is empty
-      # Append remaining elements from non-empty list to sorted list (in order)
-      # Return sorted list
+    def merge(list_a, list_b):
+        # Compare the first elements of both lists
+        # Remove the lower element from its list and add to a sorted list
+        # Keep comparing until one list is empty
+        # Append remaining elements from non-empty list to sorted list (in order)
+        # Return sorted list
 
 This pseudocode could be improved, but it provides a good starting place. To keep yourself on track, leave the comments in place as you write your code so that you can compare your implementation with the steps you've defined in pseudocode. That way, it is easier to tell if an error you encountered is an error in your logic (i.e. the pseudocode) or an error in your implementation (i.e. how your code is written).
 
