@@ -13,7 +13,7 @@ Much of the starter code (the core web app) is already written for you. Your job
 
 > [action]
 >
-Download and setup the starter code: TODO: LINK TO REPO
+Download and setup the starter code: [https://github.com/MakeSchool-Tutorials/Sorting-Algorithms-Starter-Code](https://github.com/MakeSchool-Tutorials/Sorting-Algorithms-Starter-Code)
 >
 Follow the "Getting Started" instructions in the README to get the app up and running. Once you have it working, explore the codebase to see how it works.
 
