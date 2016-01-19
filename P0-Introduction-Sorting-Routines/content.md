@@ -86,13 +86,22 @@ In order to sort a data set like the one above, we need to know which attribute 
 
 Here's an example interface for a `sort_by()` function that could sort the above list by duration (ascending lowest to highest):
 
-	by_duration = sort_by(flights, 'duration', 'asc')
+	by_duration = sort_by(flights, 'duration', Order.asc)
 	by_duration[0]['duration'] == 5.32 # => true
 
 Or we could sort by destination (alphabetically, Z-A):
 
-	by_dest = sort_by(flights, 'dest', 'desc')
+	by_dest = sort_by(flights, 'dest', Order.desc)
 	by_dest[0]['dest'] == 'NWK' # => true
+
+Note the use of `Order.asc` and `Order.desc` above. Those aren't built into Python, they are examples of an [enumeration](https://docs.python.org/3/library/enum.html). For the above code to work, we'd have to define an `Order` enumeration like this:
+
+	from enum import Enum
+	class Order(Enum):
+	    asc = 1
+	    desc = -1
+
+The value you give to each enumeration member is up to you. In the example implementation below, only the names of each member are used.
 
 > [action]
 >
@@ -101,7 +110,7 @@ Write a `sort_by()` function following the examples above.
 It should have three parameters:
 - `list`: a list of dictionaries
 - `property`: property to sort by
-- `order`: either `'asc'` or `'desc'`
+- `order`: a member of the `Order` enumerator (you must define this)
 >
 Make sure to test your function with different inputs to ensure that it works under all reasonable conditions!
 
@@ -118,9 +127,9 @@ When you've got a working version of `sort_by()`, compare your code to the examp
 	        for j in range(len(source)):
 	            compare = source[idx][property] # elem to compare against
 	            current = source[j][property]   # current elem in iteration
-	            if order == 'asc' and current < compare:
+	            if order is Order.asc and current < compare:
 	                idx = j
-	            elif order == 'desc' and current > compare:
+	            elif order is Order.desc and current > compare:
 	                idx = j
 	        sorted.append(source[idx])
 	        del source[idx]
