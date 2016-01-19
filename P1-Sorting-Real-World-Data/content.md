@@ -13,15 +13,13 @@ Much of the starter code (the core web app) is already written for you. Your job
 
 > [action]
 >
-Download and setup the starter code: [https://github.com/MakeSchool-Tutorials/Sorting-Algorithms-Starter-Code](https://github.com/MakeSchool-Tutorials/Sorting-Algorithms-Starter-Code)
->
-Follow the "Getting Started" instructions in the README to get the app up and running. Once you have it working, explore the codebase to see how it works.
+> Create a repo from the starter code [using this link](https://classroom.github.com/assignment-invitations/ed9300da2d3353c63e009e81a364f034). Clone it to your computer, then follow the "Getting Started" instructions in the README to get the app up and running. Once you have it working, explore the codebase to see how it works.
 
 Now that we have the starter code up and running, we can start working on our sorting algorithms.
 
 If you open the `sort.py` file, you'll notice that the `timed_sort()` function accepts an `algorithm` argument for specifying which sorting algorithm to use. At the moment, only one algorithm is available (insertion sort), and so it is set as the default.
 
-### Build Your Own Sorting Routines
+# Build Your Own Sorting Routines
 
 Now for the fun part: we're going to build our own implementations of sorting algorithms!
 
@@ -39,11 +37,13 @@ Implement 5 common sorting algorithms:
 >
 Make sure to rigorously test your implementations to ensure that they work as expected!
 
+<!-- comment to break boxes -->
+
 > [info]
 >
 There are lots and lots of resources on sorting algorithms on the web. The [Wikipedia article](https://en.wikipedia.org/wiki/Sorting_algorithm) has a good overview and the site [http://www.sorting-algorithms.com/](http://www.sorting-algorithms.com/) includes helpful animations and brief summaries.
 
-### Use Your Routines in the Project Code
+# Use Your Routines in the Project Code
 
 Once you have some (well-tested) sorting algorithms written, it is time to make use of them.
 
@@ -91,7 +91,7 @@ In other words, `$1000.00` is listed as being lower than `$40.00` because the st
 >
 To fix this bug, use the technique from the previous lesson: make sure that values for this sort are appropriately parsed before being compared.
 
-### Compare and Analyze Performance
+# Compare and Analyze Performance
 
 With a small library of sorting algorithms to choose from and some decent-sized data sets to experiment with, the final step is to analyze and compare the different algorithms.
 
@@ -189,7 +189,7 @@ Beware of common errors and logical mistakes:
 - Out-of-bounds errors (e.g. trying to access indices outside the list)
 - Comparison operator errors (e.g. using `<` when you want `<=`)
 
-## Where To Go From Here
+# Where To Go From Here
 
 Once you have completed all of the main goals of the tutorial, use some of these ideas to expand the project and explore the concepts further:
 
